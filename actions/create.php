@@ -2,6 +2,15 @@
 // create a new contact
 header('Content-Type: application/json');
 
+//input validation - ADD THIS
+if (empty($_POST['name']) || empty($_POST['phone'])) {
+    echo json_encode([
+        "success" => false,
+        "error" => "Name and phone are required"
+    ]);
+    exit;
+}
+
 // connect to database
 include __DIR__ . "/db.php";
 
